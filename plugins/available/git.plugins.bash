@@ -1,5 +1,12 @@
 #!/bin/bash
 
+function gpa {
+  for remote in $(git remote -v | grep push | cut -f 1 -); do
+    echo "-----> Pushing to $remote: $*"
+    git push $remote $* 
+  done
+}
+
 function git_remote {
   echo "Running: git remote add origin ${GIT_HOSTING}:$1.git"
   git remote add origin $GIT_HOSTING:$1.git
